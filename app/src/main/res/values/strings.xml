@@ -15,4 +15,6 @@
     <string name="sex">Пол</string>
     <string name="login_button">Войти</string>
     <string name="image_bicyclist">bicyclist</string>
+    <string name="activity">Активность</string>
+    <string name="profile">Профиль</string>
 </resources>
