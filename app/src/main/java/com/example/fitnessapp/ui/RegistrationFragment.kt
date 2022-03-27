@@ -21,14 +21,20 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration_page) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val span = SpannableString("Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности и обработки персональных данных, а также принимаете пользовательское соглашение")
+        val span =
+            SpannableString("Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности и обработки персональных данных, а также принимаете пользовательское соглашение")
         val clickSpanOne: ClickableSpan = object : ClickableSpan() {
             override fun updateDrawState(text: TextPaint) {
                 text.color = text.linkColor
                 text.isUnderlineText = false
             }
+
             override fun onClick(view: View) {
-                Toast.makeText(requireActivity().application,"Политика конфиденциальности", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireActivity().application,
+                    "Политика конфиденциальности",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
         val clickSpanTwo: ClickableSpan = object : ClickableSpan() {
@@ -36,8 +42,13 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration_page) {
                 text.color = text.linkColor
                 text.isUnderlineText = false
             }
+
             override fun onClick(view: View) {
-                Toast.makeText(requireActivity().application, "Пользовательское соглашение", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireActivity().application,
+                    "Пользовательское соглашение",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 

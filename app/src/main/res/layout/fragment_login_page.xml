@@ -16,8 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="Вход"
-        app:titleTextColor="@color/black">
-    </androidx.appcompat.widget.Toolbar>
+        app:titleTextColor="@color/black" />
 
     <ImageView
         android:id="@+id/imageView"
