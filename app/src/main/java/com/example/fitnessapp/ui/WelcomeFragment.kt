@@ -1,7 +1,6 @@
 package com.example.fitnessapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -22,10 +21,5 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome_page) {
         view.findViewById<TextView>(R.id.loginView).setOnClickListener {
             findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(tag, "Жопа")
     }
 }

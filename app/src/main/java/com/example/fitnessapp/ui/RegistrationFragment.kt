@@ -59,8 +59,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration_page) {
         text.movementMethod = LinkMovementMethod()
         text.text = span
 
-        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setNavigationOnClickListener {
+        view.findViewById<Toolbar>(R.id.toolbar).setNavigationOnClickListener {
             findNavController().navigateUp()
         }
 
