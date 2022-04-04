@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/activityFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.fitnessapp.ui.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/activityFragment"
+        android:name="com.example.fitnessapp.ui.ActivityFragment"
+        android:label="ActivityFragment" />
+</navigation>

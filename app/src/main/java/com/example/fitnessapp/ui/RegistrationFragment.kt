@@ -64,7 +64,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration_page) {
         }
 
         view.findViewById<Button>(R.id.btnRegistration).setOnClickListener {
-            findNavController().navigate(R.id.action_registrationFragment_to_activityFragment)
+            findNavController().navigate(R.id.action_registrationFragment_to_mainFragment)
         }
     }
 }

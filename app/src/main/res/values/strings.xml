@@ -17,4 +17,6 @@
     <string name="image_bicyclist">bicyclist</string>
     <string name="activity">Активность</string>
     <string name="profile">Профиль</string>
+    <string name="tab_first">Моя</string>
+    <string name="tab_second">Пользователей</string>
 </resources>

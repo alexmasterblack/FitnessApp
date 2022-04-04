@@ -28,8 +28,8 @@
         android:name="com.example.fitnessapp.ui.LoginFragment"
         android:label="LoginFragment" >
         <action
-            android:id="@+id/action_loginFragment_to_activityFragment"
-            app:destination="@id/activityFragment"
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
             app:popUpTo="@id/navigation_graph"
             app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -42,8 +42,8 @@
         android:name="com.example.fitnessapp.ui.RegistrationFragment"
         android:label="RegistrationFragment" >
         <action
-            android:id="@+id/action_registrationFragment_to_activityFragment"
-            app:destination="@id/activityFragment"
+            android:id="@+id/action_registrationFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
             app:popUpTo="@id/navigation_graph"
             app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -52,7 +52,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/activityFragment"
-        android:name="com.example.fitnessapp.ui.ActivityFragment"
-        android:label="ActivityFragment" />
+        android:id="@+id/mainFragment"
+        android:name="com.example.fitnessapp.ui.MainFragment"
+        android:label="MainFragment" />
 </navigation>
