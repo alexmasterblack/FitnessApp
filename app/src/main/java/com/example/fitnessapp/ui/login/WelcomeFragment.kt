@@ -1,4 +1,4 @@
-package com.example.fitnessapp.ui
+package com.example.fitnessapp.ui.login
 
 import android.os.Bundle
 import android.view.View

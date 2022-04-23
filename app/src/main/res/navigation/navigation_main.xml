@@ -10,6 +10,6 @@
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/activityFragment"
-        android:name="com.example.fitnessapp.ui.ActivityFragment"
+        android:name="com.example.fitnessapp.ui.activity.ActivityFragment"
         android:label="ActivityFragment" />
 </navigation>
