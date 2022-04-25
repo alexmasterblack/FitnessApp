@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnessapp.R
 import com.example.fitnessapp.domain.entity.ListItem
 
-class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RecyclerViewAdapter(private val clickListener: (ListItem.CardActivity) -> Unit) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val DATE_VIEW_TYPE = 0
@@ -28,9 +29,15 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 LayoutInflater.from(parent.context).inflate(R.layout.activity_date, parent, false)
             DateViewHolder(view)
         } else {
-            val view =
-                LayoutInflater.from(parent.context).inflate(R.layout.activity_card, parent, false)
-            CardViewHolder(view)
+            val viewHolder =
+                CardViewHolder(
+                    LayoutInflater.from(parent.context)
+                        .inflate(R.layout.activity_card, parent, false)
+                )
+            viewHolder.itemView.setOnClickListener {
+                clickListener(data[viewHolder.adapterPosition] as ListItem.CardActivity)
+            }
+            return viewHolder
         }
     }
 
@@ -63,6 +70,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val period = itemView.findViewById<TextView>(R.id.period)
         private val typeActivity = itemView.findViewById<TextView>(R.id.typeActivity)
         private val dateActivity = itemView.findViewById<TextView>(R.id.dateActivity)
+
 
         fun bind(card: ListItem.CardActivity) {
             distance.text = card.distance
