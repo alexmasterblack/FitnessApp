@@ -1,5 +1,6 @@
 package com.example.fitnessapp.domain.entity
 
+// начало финиш добавить?
 sealed class ListItem(val id: Int) {
     class SplitDate(id: Int, val date: String) : ListItem(id)
     class CardActivity(

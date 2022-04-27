@@ -14,7 +14,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="Велосипед"
-        app:titleTextColor="@color/black" />
+        app:titleTextColor="@color/black"
+        app:menu="@menu/toolbar_menu"/>
 
     <TextView
         android:id="@+id/nickname"

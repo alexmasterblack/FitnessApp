@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnessapp.R
@@ -17,7 +18,17 @@ class ActivityMyFragment : Fragment(R.layout.fragment_activity_my) {
     private val activityData = CardsData()
 
     private val adapter = RecyclerViewAdapter {
-        Toast.makeText(activity?.applicationContext, it.distance, Toast.LENGTH_SHORT).show()
+        val bundle = Bundle()
+        bundle.putString("Distance", it.distance)
+        bundle.putString("Period", it.period)
+        bundle.putString("TypeActivity", it.typeActivity)
+        bundle.putString("DateActivity", it.dateActivity)
+        bundle.putInt("CardType", it.cardType.ordinal)
+
+        findNavController().navigate(
+            R.id.action_activityFragment_to_activityDetailsFragment,
+            bundle
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
