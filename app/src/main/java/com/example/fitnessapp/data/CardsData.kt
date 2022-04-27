@@ -4,6 +4,7 @@ import com.example.fitnessapp.domain.entity.CardType
 import com.example.fitnessapp.domain.entity.ListItem
 import org.joda.time.DateTime
 
+
 class CardsData {
 
     private val pattern = "dd.MM.YYYY"
@@ -66,6 +67,4 @@ class CardsData {
             CardType.USERS -> usersData
         }
     }
-
-//    private fun getMaxId() = data.maxOf { it.id }
 }

@@ -2,9 +2,7 @@ package com.example.fitnessapp.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +24,7 @@ class ActivityUsersFragment : Fragment(R.layout.fragment_activity_users) {
         bundle.putString("DateActivity", it.dateActivity)
         bundle.putInt("CardType", it.cardType.ordinal)
         bundle.putString("Nickname", it.nickname)
+
         findNavController().navigate(
             R.id.action_activityFragment_to_activityDetailsFragment,
             bundle
