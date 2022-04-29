@@ -2,6 +2,7 @@ package com.example.fitnessapp.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +37,11 @@ class ActivityMyFragment : Fragment(R.layout.fragment_activity_my) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@ActivityMyFragment.adapter
         }
-        adapter.setData(activityData.getDefaultData(CardType.MY))
+        if (activityData.getDefaultData(CardType.MY).isNotEmpty()) {
+            adapter.setData(activityData.getDefaultData(CardType.MY))
+            view.findViewById<TextView>(R.id.text_one).visibility = View.GONE
+            view.findViewById<TextView>(R.id.text_two).visibility = View.GONE
+        }
 
     }
 }
