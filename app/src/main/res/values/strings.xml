@@ -30,4 +30,6 @@
     <string name="comment">Комментарий</string>
     <string name="delete">Удалить</string>
     <string name="share">Поделиться</string>
+    <string name="text_one">Время потренить</string>
+    <string name="text_two">Нажимай на кнопку ниже и начинаем трекать активность</string>
 </resources>
