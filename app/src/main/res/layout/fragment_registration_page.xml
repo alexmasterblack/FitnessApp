@@ -156,7 +156,7 @@
                     android:text="@string/radio_other" />
             </RadioGroup>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRegistration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

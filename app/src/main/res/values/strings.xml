@@ -32,4 +32,7 @@
     <string name="share">Поделиться</string>
     <string name="text_one">Время потренить</string>
     <string name="text_two">Нажимай на кнопку ниже и начинаем трекать активность</string>
+    <string name="mine">Моя</string>
+    <string name="users">Пользователей</string>
+    <string name="add_button">Add button</string>
 </resources>

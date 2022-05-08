@@ -24,10 +24,10 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
         TabLayoutMediator(tabLayout, pager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.text = "Моя"
+                    tab.text = resources.getString(R.string.mine)
                 }
                 1 -> {
-                    tab.text = "Пользователей"
+                    tab.text = resources.getString(R.string.users)
                 }
             }
         }.attach()

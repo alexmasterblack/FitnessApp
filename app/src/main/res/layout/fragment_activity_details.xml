@@ -15,6 +15,7 @@
         app:menu="@menu/toolbar_menu"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="Велосипед"
+        android:elevation="4dp"
         app:titleTextColor="@color/black" />
 
     <TextView

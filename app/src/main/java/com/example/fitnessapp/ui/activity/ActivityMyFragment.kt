@@ -18,17 +18,16 @@ class ActivityMyFragment : Fragment(R.layout.fragment_activity_my) {
     private val activityData = CardsData()
 
     private val adapter = RecyclerViewAdapter {
-        val bundle = Bundle()
-        bundle.putString("Distance", it.distance)
-        bundle.putString("Period", it.period)
-        bundle.putString("TypeActivity", it.typeActivity)
-        bundle.putString("DateActivity", it.dateActivity)
-        bundle.putInt("CardType", it.cardType.ordinal)
+        val information =
+            ActivityFragmentDirections.actionActivityFragmentToActivityDetailsFragment(
+                it.distance,
+                it.period,
+                it.typeActivity,
+                it.dateActivity,
+                it.cardType
+            )
 
-        findNavController().navigate(
-            R.id.action_activityFragment_to_activityDetailsFragment,
-            bundle
-        )
+        findNavController().navigate(information)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
