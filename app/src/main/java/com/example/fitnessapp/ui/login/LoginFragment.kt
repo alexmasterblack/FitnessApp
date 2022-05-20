@@ -1,4 +1,4 @@
-package com.example.fitnessapp.ui
+package com.example.fitnessapp.ui.login
 
 import android.os.Bundle
 import android.view.View
@@ -19,7 +19,7 @@ class LoginFragment : Fragment(R.layout.fragment_login_page) {
         }
 
         view.findViewById<Button>(R.id.btnLogin).setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_activityFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
         }
     }
 }

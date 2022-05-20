@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.fitnessapp.R
 
 
-class ActivityFragment : Fragment(R.layout.fragment_activity) {
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }

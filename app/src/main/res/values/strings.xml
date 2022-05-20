@@ -17,4 +17,22 @@
     <string name="image_bicyclist">bicyclist</string>
     <string name="activity">Активность</string>
     <string name="profile">Профиль</string>
+    <string name="tab_first">Моя</string>
+    <string name="tab_second">Пользователей</string>
+    <string name="nickname">\@van_darkholme</string>
+    <string name="distance">14.32 км</string>
+    <string name="date">14 часов назад</string>
+    <string name="period">1 час 42 мин</string>
+    <string name="start">Старт</string>
+    <string name="time_start">14:49</string>
+    <string name="finish">Финиш</string>
+    <string name="time_finish">16:31</string>
+    <string name="comment">Комментарий</string>
+    <string name="delete">Удалить</string>
+    <string name="share">Поделиться</string>
+    <string name="text_one">Время потренить</string>
+    <string name="text_two">Нажимай на кнопку ниже и начинаем трекать активность</string>
+    <string name="mine">Моя</string>
+    <string name="users">Пользователей</string>
+    <string name="add_button">Add button</string>
 </resources>
