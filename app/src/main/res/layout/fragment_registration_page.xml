@@ -40,6 +40,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/login"
@@ -59,6 +60,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/LoginInput">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/name"
@@ -79,6 +81,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
@@ -99,6 +102,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordRepeat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/repeat_password"
@@ -134,7 +138,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/sex">
 
                 <RadioButton
-                    android:id="@+id/radioVibrateRun"
+                    android:id="@+id/man"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -142,18 +146,12 @@
                     android:text="@string/radio_man" />
 
                 <RadioButton
-                    android:id="@+id/radioVibrateStop"
+                    android:id="@+id/woman"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minHeight="0dp"
                     android:text="@string/radio_woman" />
 
-                <RadioButton
-                    android:id="@+id/radioVibrateShort"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minHeight="0dp"
-                    android:text="@string/radio_other" />
             </RadioGroup>
 
             <com.google.android.material.button.MaterialButton
