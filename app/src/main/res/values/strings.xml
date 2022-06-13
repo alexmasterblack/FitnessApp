@@ -35,4 +35,6 @@
     <string name="mine">Моя</string>
     <string name="users">Пользователей</string>
     <string name="add_button">Add button</string>
+    <string name="change_password">Изменить пароль</string>
+    <string name="exit">Выйти</string>
 </resources>
