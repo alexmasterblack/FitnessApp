@@ -34,8 +34,8 @@ class LoginViewModel : ViewModel() {
                     _result.value = "Успех"
                 }
 
-                override fun onError(error: Throwable) {
-                    _result.value = error.toString()
+                override fun onError(error: String) {
+                    _result.value = error
                 }
             })
         }

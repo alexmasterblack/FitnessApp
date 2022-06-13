@@ -14,6 +14,7 @@ class RegistrationViewModel : ViewModel() {
     private val _showNameError = MutableLiveData<Boolean>(false)
     private val _showPasswordError = MutableLiveData<Boolean>(false)
     private val _showRepeatPasswordError = MutableLiveData<Boolean>(false)
+    private val _showWrongRepeatPasswordError = MutableLiveData<Boolean>(false)
     private val _result = MutableLiveData<String>("")
     private val _token = MutableLiveData<String>("")
 
@@ -21,34 +22,48 @@ class RegistrationViewModel : ViewModel() {
     val showNameError: LiveData<Boolean> get() = _showNameError
     val showPasswordError: LiveData<Boolean> get() = _showPasswordError
     val showRepeatPasswordError: LiveData<Boolean> get() = _showRepeatPasswordError
+    val showWrongRepeatPasswordError: LiveData<Boolean> get() = _showWrongRepeatPasswordError
     val result: LiveData<String> get() = _result
     val token: LiveData<String> = _token
 
-    fun onRegistrationClicked(login: String, password: String, passwordRepeat: String, name: String, gender: Int) {
+    fun onRegistrationClicked(
+        login: String,
+        password: String,
+        passwordRepeat: String,
+        name: String,
+        gender: Int
+    ) {
         if (login.isBlank()) {
             _showLoginError.postValue(true)
         }
         if (name.isBlank()) {
             _showNameError.postValue(true)
         }
-        if (password.isBlank()) {
+        if (password.isBlank() || password.length < 8 ) {
             _showPasswordError.postValue(true)
         }
         if (passwordRepeat.isBlank()) {
             _showRepeatPasswordError.postValue(true)
         }
         if (passwordRepeat != password) {
-            _showRepeatPasswordError.postValue(true)
+            _showWrongRepeatPasswordError.postValue(true)
         }
-        fitnessService.register(login, password, name, gender, object : FitnessService.LoginCallback {
-            override fun onSuccess(result: RegisterDto) {
-                _token.value = result.token
-                _result.value = "Успех"
-            }
+        if (login.isNotBlank() && name.isNotBlank() && password.isNotBlank() && passwordRepeat.isNotBlank() && passwordRepeat == password) {
+            fitnessService.register(
+                login,
+                password,
+                name,
+                gender,
+                object : FitnessService.LoginCallback {
+                    override fun onSuccess(result: RegisterDto) {
+                        _token.value = result.token
+                        _result.value = "Успех"
+                    }
 
-            override fun onError(error: Throwable) {
-                _result.value = error.toString()
-            }
-        })
+                    override fun onError(error: String) {
+                        _result.value = error
+                    }
+                })
+        }
     }
 }

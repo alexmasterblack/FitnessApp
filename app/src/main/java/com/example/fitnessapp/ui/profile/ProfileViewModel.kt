@@ -28,7 +28,7 @@ class ProfileViewModel : ViewModel() {
                 _name.value = result.name
             }
 
-            override fun onError(error: Throwable) {
+            override fun onError(error: String) {
                 _login.value = ""
                 _name.value = ""
             }
@@ -42,8 +42,8 @@ class ProfileViewModel : ViewModel() {
                 _result.value = "Успех"
             }
 
-            override fun onError(error: Throwable) {
-                _result.value = error.toString()
+            override fun onError(error: String) {
+                _result.value = error
             }
         })
     }

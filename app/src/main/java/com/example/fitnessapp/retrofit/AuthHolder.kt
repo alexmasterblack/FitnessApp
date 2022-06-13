@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 
 class AuthHolder(
-    private val context: Context
+    context: Context
 ) {
 
     companion object {
@@ -15,6 +15,15 @@ class AuthHolder(
 
     fun getToken(): String {
         return sharedPreferences.getString(PREFS_AUTH, "")!!
+    }
+
+    fun checkToken(): Boolean {
+        if (sharedPreferences.contains(PREFS_AUTH)) {
+            if (getToken() != "") {
+                return true
+            }
+        }
+        return false
     }
 
     fun cleanToken() {

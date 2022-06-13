@@ -1,5 +1,7 @@
 package com.example.fitnessapp.ui.login.registration
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -7,24 +9,26 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.RadioGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
 import com.example.fitnessapp.R
 import com.example.fitnessapp.retrofit.AuthHolder
+import com.example.fitnessapp.ui.main.MainAppActivity
+import com.example.fitnessapp.ui.main.WelcomeActivity
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
-
-class RegistrationFragment : Fragment(R.layout.fragment_registration_page) {
+class RegistrationActivity : AppCompatActivity() {
 
     private val viewModel by lazy { ViewModelProvider(this)[RegistrationViewModel::class.java] }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_registration)
 
         val span =
             SpannableString("Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности и обработки персональных данных, а также принимаете пользовательское соглашение")
@@ -36,7 +40,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration_page) {
 
             override fun onClick(view: View) {
                 Toast.makeText(
-                    requireActivity().application,
+                    applicationContext,
                     "Политика конфиденциальности",
                     Toast.LENGTH_LONG
                 ).show()
@@ -50,7 +54,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration_page) {
 
             override fun onClick(view: View) {
                 Toast.makeText(
-                    requireActivity().application,
+                    applicationContext,
                     "Пользовательское соглашение",
                     Toast.LENGTH_LONG
                 ).show()
@@ -60,47 +64,56 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration_page) {
         span.setSpan(clickSpanOne, 37, 66, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         span.setSpan(clickSpanTwo, span.length - 27, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-        val text = view.findViewById<TextView>(R.id.agreementView)
+        val text = findViewById<TextView>(R.id.agreementView)
         text.movementMethod = LinkMovementMethod()
         text.text = span
 
-        view.findViewById<Toolbar>(R.id.toolbar).setNavigationOnClickListener {
-            findNavController().navigateUp()
+        findViewById<Toolbar>(R.id.toolbar).setNavigationOnClickListener {
+            startActivity(Intent(this, WelcomeActivity::class.java))
+            finish()
         }
 
-        val authHolder = AuthHolder(requireContext())
+        val authHolder = AuthHolder(this)
 
-        viewModel.showLoginError.observe(viewLifecycleOwner) {
+        viewModel.showLoginError.observe(this) {
             if (it) {
-                view.findViewById<TextInputEditText>(R.id.login).error = "Введите логин"
+                findViewById<TextInputLayout>(R.id.LoginInput).error = "Введите логин"
             } else {
-                view.findViewById<TextInputEditText>(R.id.login).error = null
+                findViewById<TextInputLayout>(R.id.LoginInput).error = null
             }
         }
-        viewModel.showNameError.observe(viewLifecycleOwner) {
+        viewModel.showNameError.observe(this) {
             if (it) {
-                view.findViewById<TextInputEditText>(R.id.name).error = "Введите имя или никнейм"
+                findViewById<TextInputLayout>(R.id.NameInput).error = "Введите имя или никнейм"
             } else {
-                view.findViewById<TextInputEditText>(R.id.name).error = null
+                findViewById<TextInputLayout>(R.id.NameInput).error = null
             }
         }
-        viewModel.showPasswordError.observe(viewLifecycleOwner) {
+        viewModel.showPasswordError.observe(this) {
             if (it) {
-                view.findViewById<TextInputEditText>(R.id.password).error = "Введите пароль"
+                findViewById<TextInputLayout>(R.id.PasswordInput).error = "Введите пароль"
             } else {
-                view.findViewById<TextInputEditText>(R.id.password).error = null
+                findViewById<TextInputLayout>(R.id.PasswordInput).error = null
             }
         }
-        viewModel.showRepeatPasswordError.observe(viewLifecycleOwner) {
+        viewModel.showRepeatPasswordError.observe(this) {
             if (it) {
-                view.findViewById<TextInputEditText>(R.id.passwordRepeat).error = "Повторите пароль"
+                findViewById<TextInputLayout>(R.id.RepeatPasswordInput).error = "Повторите пароль"
             } else {
-                view.findViewById<TextInputEditText>(R.id.passwordRepeat).error = null
+                findViewById<TextInputLayout>(R.id.RepeatPasswordInput).error = null
+            }
+        }
+        viewModel.showWrongRepeatPasswordError.observe(this) {
+            if (it) {
+                findViewById<TextInputLayout>(R.id.RepeatPasswordInput).error =
+                    "Неверно введен пароль"
+            } else {
+                findViewById<TextInputLayout>(R.id.RepeatPasswordInput).error = null
             }
         }
 
         var gender = 0
-        view.findViewById<RadioGroup>(R.id.radioGroup).setOnCheckedChangeListener { _, checkedId ->
+        findViewById<RadioGroup>(R.id.radioGroup).setOnCheckedChangeListener { _, checkedId ->
             if (checkedId == R.id.man) {
                 gender = 0
             } else if (checkedId == R.id.woman) {
@@ -108,34 +121,32 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration_page) {
             }
         }
 
-        view.findViewById<Button>(R.id.btnRegistration).setOnClickListener {
+        findViewById<Button>(R.id.btnRegistration).setOnClickListener {
             viewModel.onRegistrationClicked(
-                view.findViewById<TextInputEditText>(R.id.login).text.toString(),
-                view.findViewById<TextInputEditText>(R.id.password).text.toString(),
-                view.findViewById<TextInputEditText>(R.id.passwordRepeat).text.toString(),
-                view.findViewById<TextInputEditText>(R.id.name).text.toString(),
+                findViewById<TextInputEditText>(R.id.login).text.toString(),
+                findViewById<TextInputEditText>(R.id.password).text.toString(),
+                findViewById<TextInputEditText>(R.id.passwordRepeat).text.toString(),
+                findViewById<TextInputEditText>(R.id.name).text.toString(),
                 gender
             )
-            viewModel.token.observe(viewLifecycleOwner) {
+
+            viewModel.token.observe(this) {
                 authHolder.saveToken(it)
             }
-            viewModel.result.observe(viewLifecycleOwner) {
+
+            viewModel.result.observe(this) {
                 if (it == "Успех") {
-                    findNavController().safeNavigate(RegistrationFragmentDirections.actionRegistrationFragmentToMainFragment())
+                    startActivity(Intent(this, MainAppActivity::class.java))
+                    finish()
                 } else if (it != "") {
                     Toast.makeText(
-                        requireActivity().application,
+                        this,
                         it,
                         Toast.LENGTH_LONG
                     ).show()
                 }
             }
-        }
-    }
 
-    private fun NavController.safeNavigate(direction: NavDirections) {
-        currentDestination?.getAction(direction.actionId)?.run {
-            navigate(direction)
         }
     }
 }

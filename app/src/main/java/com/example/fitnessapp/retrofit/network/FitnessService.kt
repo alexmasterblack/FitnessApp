@@ -1,5 +1,6 @@
 package com.example.fitnessapp.retrofit.network
 
+import android.util.Log
 import com.example.fitnessapp.retrofit.api.FitnessApi
 import com.example.fitnessapp.retrofit.dto.RegisterDto
 import com.example.fitnessapp.retrofit.dto.UserDto
@@ -24,13 +25,13 @@ class FitnessService {
                 override fun onResponse(call: Call<RegisterDto>, response: Response<RegisterDto>) {
                     if (response.isSuccessful) {
                         response.body()?.let { callback.onSuccess(it) } ?: callback.onError(
-                            IOException("Server returned error")
+                            IOException("Server returned error").toString()
                         )
-                    } else callback.onError(IOException("Empty body"))
+                    } else callback.onError(response.message())
                 }
 
                 override fun onFailure(call: Call<RegisterDto>, t: Throwable) {
-                    callback.onError(t)
+                    callback.onError(t.toString())
                 }
             })
     }
@@ -44,14 +45,14 @@ class FitnessService {
             override fun onResponse(call: Call<RegisterDto>, response: Response<RegisterDto>) {
                 if (response.isSuccessful) {
                     response.body()?.let { callback.onSuccess(it) }
-                        ?: callback.onError(IOException("Server returned error"))
+                        ?: callback.onError(IOException("Server returned error").toString())
 
-                } else callback.onError(IOException("Empty body"))
+                } else callback.onError(response.message())
 
             }
 
             override fun onFailure(call: Call<RegisterDto>, t: Throwable) {
-                callback.onError(t)
+                callback.onError(t.toString())
             }
         })
     }
@@ -63,13 +64,13 @@ class FitnessService {
                     if (response.message() == "OK") {
                         callback.onSuccess(response.message())
                     } else {
-                        callback.onError(IOException("Server returned error"))
+                        callback.onError(IOException("Server returned error").toString())
                     }
-                } else callback.onError(IOException("Empty body"))
+                } else callback.onError(response.message())
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                callback.onError(t)
+                callback.onError(t.toString())
             }
 
         })
@@ -80,13 +81,13 @@ class FitnessService {
             override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
                 if (response.isSuccessful) {
                     response.body()?.let { callback.onSuccess(it) }
-                        ?: callback.onError(IOException("Server returned error"))
+                        ?: callback.onError(IOException("Server returned error").toString())
 
-                } else callback.onError(IOException("Empty body"))
+                } else callback.onError(response.message())
             }
 
             override fun onFailure(call: Call<UserDto>, t: Throwable) {
-                callback.onError(t)
+                callback.onError(t.toString())
             }
 
         })
@@ -94,16 +95,16 @@ class FitnessService {
 
     interface LoginCallback {
         fun onSuccess(result: RegisterDto)
-        fun onError(error: Throwable)
+        fun onError(error: String)
     }
 
     interface LogoutCallback {
         fun onSuccess(result: String)
-        fun onError(error: Throwable)
+        fun onError(error: String)
     }
 
     interface ProfileCallback {
         fun onSuccess(result: UserDto)
-        fun onError(error: Throwable)
+        fun onError(error: String)
     }
 }
