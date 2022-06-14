@@ -13,10 +13,13 @@ import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.example.fitnessapp.R
 import com.example.fitnessapp.retrofit.AuthHolder
+import com.example.fitnessapp.ui.CustomViewModelFactory
+import com.example.fitnessapp.ui.login.login.LoginViewModel
 import com.example.fitnessapp.ui.main.MainAppActivity
 import com.example.fitnessapp.ui.main.WelcomeActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -24,7 +27,9 @@ import com.google.android.material.textfield.TextInputLayout
 
 class RegistrationActivity : AppCompatActivity() {
 
-    private val viewModel by lazy { ViewModelProvider(this)[RegistrationViewModel::class.java] }
+    private val viewModel by viewModels<RegistrationViewModel> {
+        CustomViewModelFactory { RegistrationViewModel(AuthHolder(applicationContext)) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,8 +77,6 @@ class RegistrationActivity : AppCompatActivity() {
             startActivity(Intent(this, WelcomeActivity::class.java))
             finish()
         }
-
-        val authHolder = AuthHolder(this)
 
         viewModel.showLoginError.observe(this) {
             if (it) {
@@ -129,10 +132,6 @@ class RegistrationActivity : AppCompatActivity() {
                 findViewById<TextInputEditText>(R.id.name).text.toString(),
                 gender
             )
-
-            viewModel.token.observe(this) {
-                authHolder.saveToken(it)
-            }
 
             viewModel.result.observe(this) {
                 if (it == "Успех") {

@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.ViewModelProvider
 import com.example.fitnessapp.R
 import com.example.fitnessapp.retrofit.AuthHolder
+import com.example.fitnessapp.ui.CustomViewModelFactory
 import com.example.fitnessapp.ui.main.MainAppActivity
 import com.example.fitnessapp.ui.main.WelcomeActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -16,13 +17,13 @@ import com.google.android.material.textfield.TextInputLayout
 
 class LoginActivity : AppCompatActivity() {
 
-    private val viewModel by lazy { ViewModelProvider(this)[LoginViewModel::class.java] }
+    private val viewModel by viewModels<LoginViewModel> {
+        CustomViewModelFactory { LoginViewModel(AuthHolder(applicationContext)) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        val authHolder = AuthHolder(this)
 
         findViewById<Toolbar>(R.id.toolbar).setNavigationOnClickListener {
             startActivity(Intent(this, WelcomeActivity::class.java))
@@ -44,15 +45,11 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<Button>(R.id.btnLogin).setOnClickListener{
+        findViewById<Button>(R.id.btnLogin).setOnClickListener {
             viewModel.onLoginClicked(
                 findViewById<TextInputEditText>(R.id.login).text.toString(),
                 findViewById<TextInputEditText>(R.id.password).text.toString()
             )
-
-            viewModel.token.observe(this) {
-                authHolder.saveToken(it)
-            }
 
             viewModel.result.observe(this) {
                 if (it == "Успех") {
