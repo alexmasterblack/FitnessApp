@@ -50,18 +50,18 @@ class LoginActivity : AppCompatActivity() {
                 findViewById<TextInputEditText>(R.id.login).text.toString(),
                 findViewById<TextInputEditText>(R.id.password).text.toString()
             )
+        }
 
-            viewModel.result.observe(this) {
-                if (it == "Успех") {
-                    startActivity(Intent(this, MainAppActivity::class.java))
-                    finish()
-                } else if (it != "") {
-                    Toast.makeText(
-                        this,
-                        it,
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
+        viewModel.result.observe(this) {
+            if (it == "Успех") {
+                startActivity(Intent(this, MainAppActivity::class.java))
+                finish()
+            } else if (it != "") {
+                Toast.makeText(
+                    this,
+                    it,
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

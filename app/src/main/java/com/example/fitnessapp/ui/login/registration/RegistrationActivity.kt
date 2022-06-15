@@ -132,20 +132,19 @@ class RegistrationActivity : AppCompatActivity() {
                 findViewById<TextInputEditText>(R.id.name).text.toString(),
                 gender
             )
+        }
 
-            viewModel.result.observe(this) {
-                if (it == "Успех") {
-                    startActivity(Intent(this, MainAppActivity::class.java))
-                    finish()
-                } else if (it != "") {
-                    Toast.makeText(
-                        this,
-                        it,
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
+        viewModel.result.observe(this) {
+            if (it == "Успех") {
+                startActivity(Intent(this, MainAppActivity::class.java))
+                finish()
+            } else if (it != "") {
+                Toast.makeText(
+                    this,
+                    it,
+                    Toast.LENGTH_LONG
+                ).show()
             }
-
         }
     }
 }

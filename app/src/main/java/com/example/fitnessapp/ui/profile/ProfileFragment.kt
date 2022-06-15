@@ -26,8 +26,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.setProfile()
-
         viewModel.login.observe(viewLifecycleOwner) {
             view.findViewById<TextInputEditText>(R.id.login).setText(it)
         }
@@ -38,18 +36,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         view.findViewById<Button>(R.id.btnLogout).setOnClickListener {
             viewModel.onLogoutClicked()
+        }
 
-            viewModel.result.observe(viewLifecycleOwner) {
-                if (it == "Успех") {
-                    startActivity(Intent(activity, WelcomeActivity::class.java))
-                    activity?.finish()
-                } else if (it != "") {
-                    Toast.makeText(
-                        requireActivity().application,
-                        it,
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
+        viewModel.result.observe(viewLifecycleOwner) {
+            if (it == "Успех") {
+                startActivity(Intent(activity, WelcomeActivity::class.java))
+                activity?.finish()
+            } else if (it != "") {
+                Toast.makeText(
+                    requireActivity().application,
+                    it,
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

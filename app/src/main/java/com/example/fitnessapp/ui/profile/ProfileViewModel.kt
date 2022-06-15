@@ -22,7 +22,7 @@ class ProfileViewModel(private val authHolder: AuthHolder) : ViewModel() {
     val name: LiveData<String> get() = _name
     val result: LiveData<String> get() = _result
 
-    fun setProfile() {
+    private fun setProfile() {
         val token = "Bearer ".plus(authHolder.getToken())
         fitnessService.profile(token, object : FitnessService.ProfileCallback {
             override fun onSuccess(result: UserDto) {
@@ -36,6 +36,10 @@ class ProfileViewModel(private val authHolder: AuthHolder) : ViewModel() {
             }
 
         })
+    }
+
+    init {
+        setProfile()
     }
 
     fun onLogoutClicked() {
