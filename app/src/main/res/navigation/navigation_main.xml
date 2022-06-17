@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.fitnessapp.ui.ProfileFragment"
+        android:name="com.example.fitnessapp.ui.profile.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/activityFragment"
@@ -68,4 +68,5 @@
                 app:argType="string" />
         </fragment>
     </navigation>
+
 </navigation>
